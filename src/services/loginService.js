@@ -1,7 +1,8 @@
 const { User } = require('../models');
 
  const updateLogin = async (email, password) => {
-   const user = await User.findOne({ where: { email, password } });
+   const user = await User
+   .findOne({ where: { email, password } });
 
    if (!user) {
      return ({ 
