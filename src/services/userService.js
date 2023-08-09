@@ -1,30 +1,32 @@
 const { User } = require('../models');
 
  const getUser = async (displayName, email, password, image) => {
-   const user = await User
+   const userEmail = await User
    .findOne({ 
     where: { email } });
 
-   if (user) {
+   if (userEmail) {
      return ({ 
         status: 'CONFLICT', 
         message: 'User already registered' });
    }
 
-   const create = await User.create({ 
+   const createUser = await User.create({ 
     displayName, email, password, image });
 
    return { 
     status: 'CREATED', 
-    message: create.dataValues };
+    message: createUser.dataValues };
  };
 
  const getAllTheUsers = async () => {
-    const users = await User.findAll({
-      attributes: { exclude: ['password'] },
+    const allUsers = await User.findAll({
+      attributes: 
+      { exclude: ['password'] },
     });
  
-    return { status: 'SUCCESSFUL', message: users };
+    return { 
+      status: 'SUCCESSFUL', message: allUsers };
   };
 
   const getUsersById = async (id) => {

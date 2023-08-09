@@ -2,10 +2,10 @@ const express = require('express');
 
  const router = express.Router();
 
- const { categoriesVerification } = require('../middlewares/categoriesValidade');
- const validateToken = require('../middlewares/validateToken');
+ const { validateCategories, validateToken } = require('../middlewares/validationsFunctions');
  const { categoriesController } = require('../controllers');
 
- router.post('/', categoriesVerification, validateToken, categoriesController.postCategories);
+ router.post('/', validateCategories, validateToken, categoriesController.postCategories);
+ router.get('/', validateToken, categoriesController.getAllCategories);
 
  module.exports = router;

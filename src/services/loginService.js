@@ -1,10 +1,12 @@
 const { User } = require('../models');
 
  const updateLogin = async (email, password) => {
-   const user = await User
-   .findOne({ where: { email, password } });
+   const userLogin = await User
+   .findOne(
+    { where: { email, password } },
+);
 
-   if (!user) {
+   if (!userLogin) {
      return ({ 
       status: 'INVALID_USER', 
       message: 'Invalid fields' });
@@ -12,7 +14,7 @@ const { User } = require('../models');
 
    return { 
     status: 'SUCCESSFUL', 
-    message: user.dataValues };
+    message: userLogin.dataValues };
  };
 
  module.exports = {

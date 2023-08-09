@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 
  const configurations = {
    algorithm: 'HS256', 
+   expiresIn: '1d',
  };
 
  const token = (result) => jwt
@@ -23,12 +24,12 @@ const jwt = require('jsonwebtoken');
      .json({ message });
    }
 
-   const payload = {
+   const data = {
      email: message.email,
      id: message.id,
    };
 
-   const tokenUser = token(payload);
+   const tokenUser = token(data);
 
    return res
    .status(mapStatusHTTP(status))
